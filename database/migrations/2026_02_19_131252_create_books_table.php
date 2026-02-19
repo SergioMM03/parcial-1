@@ -12,15 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('books', function (Blueprint $table) {
-            $table->id();
-            $table->string('titulo');
-            $table->string('descripción');
-            $table->string('ISBN');
-            $table->string('copias totales');
-            $table->string('copias disponibles');
-            $table->boolean('estado') -> default(true);
+        $table->id();
+        $table->string('title');
+        $table->text('description')->nullable();
+        $table->string('isbn')->unique();
+        $table->unsignedInteger('copies_total')->default(1);
+        $table->unsignedInteger('copies_available')->default(1);
+        $table->boolean('status')->default(true);
+        $table->timestamps();
         });
-
     }
 
     /**
